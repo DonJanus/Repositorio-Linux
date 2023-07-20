@@ -1,0 +1,28 @@
+#!/bin/bash
+
+convertimg(){
+cd ~/imagens-livros
+if [ ! -d png ]
+then
+        mkdir png
+fi
+
+for imagem in *.jpg
+do
+        imagemse=$(ls $imagem | awk -F. '{ print $1}')
+        convert $imagemse.jpg png/$imagemse.png
+done
+}
+
+
+convertimg 2 > erro.txt
+if [ $? -eq 0 ]
+then 
+
+        echo "conversão realizada com sucesso"
+
+else
+        echo "houve uma falha no processo"
+
+fi
+
