@@ -13,6 +13,7 @@ tabelas=$(mysql -u root [nome da base] -e "show tables;" | grep -v Tables)
 #-v exclui a palavra que especificamos e imprime todo o resto
 for tabela in tabelas
 do
+  mysqldump -u root mutillidae $tabela > $caminho_arquivo/$data/$tabela.sql
+done
 
-
-
+aws s3 sync $CAMINHO_BACKUP s3://[nome do bucket]
